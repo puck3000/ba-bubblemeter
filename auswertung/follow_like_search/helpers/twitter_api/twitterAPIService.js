@@ -40,26 +40,26 @@ async function getLikesIdWithName(userId) {
 
 //returns a list of followerIds which the user follows
 async function getFollowersId(userId) {
-    const followersRes = await getFollowers(userId)
-    var followersIds = []
+    const followedUsers = await getFollowers(userId)
+    var followedUserIds = []
 
-    followersRes.data.forEach(follower => {
-        followersIds.push(follower.id)
+    followedUsers.forEach(followedUser => {
+        followedUserIds.push(followedUser.id)
     });
 
-    return followersIds
+    return followedUserIds
 }
 
 //returns a list of usernames which the user follows
 async function getFollowersUsername(userId) {
-    const followersRes = await getFollowers(userId)
-    var followersUsernames = []
+    const followedUsers = await getFollowers(userId)
+    var followedUsernames = []
 
-    followersRes.data.forEach(follower => {
-        followersUsernames.push(follower.username)
+    followedUsers.forEach(followedUser => {
+        followedUsernames.push(followedUser.username)
     });
 
-    return followersUsernames
+    return followedUsernames
 }
 
 export default {getUserId, getLikesId, getLikesIdWithName, getFollowersId, getFollowersUsername}
