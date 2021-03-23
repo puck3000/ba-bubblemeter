@@ -12,7 +12,7 @@ export default async function getUser(username) {
     headers: myHeaders,
     redirect: 'follow'
     };
-
+    
     var fetchUrl = "https://api.twitter.com/2/users/by/username/" + username.toString()
     var result = (await fetch(fetchUrl, requestOptions)).json()
     return result
