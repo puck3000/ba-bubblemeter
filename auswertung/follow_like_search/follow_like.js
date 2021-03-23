@@ -19,10 +19,10 @@ readXlsxFile('Klone.xlsx').then(async (rows) => {
         const page = await getPage(browser);
         await loginToTwitter(clone, passwordOfClone, page);
 
-        copyAccount(accountToCopy, page).then(() => {
+        copyAccount(accountToCopy, page).then(async () => {
             console.log(`Liked and followed everyone of ${accountToCopy} for clone ${clone}`)
+            await browser.close();
         })
-        await browser.close();
     }
 })
 

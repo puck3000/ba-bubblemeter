@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 
 export async function getBrowser() {
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
         args: [
             'no-sandbox',
         ]

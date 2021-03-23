@@ -1,7 +1,7 @@
 import likeTweetFromOtherUser from './likeTweetFromOtherUser'
 import followAccFromOtherUser from './followAccFromOtherUser'
 import twitterAPIService from '../twitter_api/twitterAPIService'
-import delay from '../other/delay'
+import {delay} from '../other/delay'
 
 export async function copyAccount(accountToCopy, page) {
 
@@ -16,7 +16,7 @@ export async function copyAccount(accountToCopy, page) {
     
     for(const follower of followers) {
         await followAccFromOtherUser(follower, page)
-        await delay(15000)
+        await delay(30000)
     }
 
     for(const [twitterer, tweetID] of Object.entries(likedTweets)) {
