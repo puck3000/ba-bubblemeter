@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel-node index.js"
+    "follow-like": "babel-node follow_like.js",
+    "save-results": "babel-node save_results.js"
   },
   "author": "",
   "license": "ISC",

@@ -3,7 +3,7 @@ import followAccFromOtherUser from './helpers/scraping/followAccsFromOtherUser'
 import twitterAPIService from './helpers/twitter_api/twitterAPIService'
 import delay from './helpers/other/delay'
 
-export function copyAccount(clone, passwordOfClone, accountToCopy, page) {
+export function copyAccount(accountToCopy, page) {
 
     //get userId of username
     const accountToCopyId = await twitterAPIService.getUserId(accountToCopy);
