@@ -1,4 +1,4 @@
-export function getPage(browser) {
+export async function getPage(browser) {
     const page = await browser.newPage();
 
     await page.setViewport({
@@ -8,7 +8,7 @@ export function getPage(browser) {
     })
     
     // set user agent
-    page.setUserAgent(
+    await page.setUserAgent(
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 Edge/16.16299'
     )
     return page;
