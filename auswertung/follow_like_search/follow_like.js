@@ -1,11 +1,11 @@
 const readXlsxFile = require('read-excel-file/node');
-import copyAccount from './helpers/scraping/copyAccount'
+import { copyAccount } from './helpers/scraping/copyAccount'
 import { getBrowser } from './helpers/scraping/getBrowser';
 import { getPage } from './helpers/scraping/getPage';
 import { loginToTwitter } from './helpers/scraping/login';
 
 // Read in accounts from excel and copy these accounts (follow and like everyone)
-readXlsxFile('Klone.xlsx').then((rows) => {
+readXlsxFile('Klone.xlsx').then(async (rows) => {
 
     //***********************************************/
     // Copying account                              */
@@ -19,7 +19,7 @@ readXlsxFile('Klone.xlsx').then((rows) => {
         const page = await getPage(browser);
         await loginToTwitter(clone, passwordOfClone, page);
 
-        copyAccount(clone, passwordOfClone, accountToCopy, page).then(() => {
+        copyAccount(accountToCopy, page).then(() => {
             console.log(`Liked and followed everyone of ${accountToCopy} for clone ${clone}`)
         })
         await browser.close();
