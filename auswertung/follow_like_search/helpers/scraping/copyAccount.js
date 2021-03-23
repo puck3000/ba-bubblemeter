@@ -1,9 +1,9 @@
-import likeTweetFromOtherUser from './helpers/scraping/likeTweetsFromOtherUser'
-import followAccFromOtherUser from './helpers/scraping/followAccsFromOtherUser'
-import twitterAPIService from './helpers/twitter_api/twitterAPIService'
-import delay from './helpers/other/delay'
+import likeTweetFromOtherUser from './likeTweetFromOtherUser'
+import followAccFromOtherUser from './followAccFromOtherUser'
+import twitterAPIService from '../twitter_api/twitterAPIService'
+import delay from '../other/delay'
 
-export function copyAccount(accountToCopy, page) {
+export async function copyAccount(accountToCopy, page) {
 
     //get userId of username
     const accountToCopyId = await twitterAPIService.getUserId(accountToCopy);
@@ -13,7 +13,7 @@ export function copyAccount(accountToCopy, page) {
 
     //get list of liked tweets with username and postId
     const likedTweets = await twitterAPIService.getLikesIdWithName(accountToCopyId)
-
+    
     for(const follower of followers) {
         await followAccFromOtherUser(follower, page)
         await delay(15000)
