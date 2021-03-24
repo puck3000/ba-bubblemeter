@@ -9,7 +9,7 @@ export async function copyAccount(accountToCopy, page) {
     const accountToCopyId = await twitterAPIService.getUserId(accountToCopy);
     
     //get list of follower usernames
-    const followers = await twitterAPIService.getFollowersUsername(accountToCopyId)
+    const followers = await twitterAPIService.getFollowedUsernames(accountToCopyId)
 
     //get list of liked tweets with username and postId
     const likedTweets = await twitterAPIService.getLikesIdWithName(accountToCopyId)
