@@ -2,7 +2,7 @@ const fetch = require("node-fetch")
 require('dotenv').config()
 var bearerToken = process.env.bearerToken
 
-export default async function getFollowers(userId) {
+export default async function getFollows(userId) {
 
     var myHeaders = new fetch.Headers();
     myHeaders.append("Authorization", "Bearer " + bearerToken);
@@ -18,11 +18,11 @@ export default async function getFollowers(userId) {
     var followedUsers = []
     
     followedUsers = addData(resultJSON.data, followedUsers)
-
+    
     while(resultJSON.meta.next_token) {
-        fetchUrl = fetchUrl + resultJSON.meta.next_token.toString()
+        fetchUrl = fetchUrl + "&pagination_token=" + resultJSON.meta.next_token.toString()
         resultJSON = await (await fetch(fetchUrl, requestOptions)).json()
-        addData(resultJSON, followedUsers)
+        followedUsers = addData(resultJSON.data, followedUsers)
     }
 
     return followedUsers
