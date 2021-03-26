@@ -1,32 +1,33 @@
 import React from 'react'
+import RadialScoreValue from './RadialScoreValue'
+import ScoreBars from './ScoreBars'
 
-function ScoreCard({ score }) {
-  // Resultate für die Darstellung aufbereiten
-  const stats = [
+function ScoreCard({ query, dummyData }) {
+  const barData = [
     {
-      name: 'Hits',
-      value: score.nrOfHits,
-      tweetDepth: score.tweetDepth,
-      perc: score.nrOfHits / score.tweetDepth,
-      color: 'turquoise',
+      name: 'matches',
+      value: dummyData.score.nrOfMatches,
+      fill: '#FFCAAF',
     },
     {
-      name: 'CloseOnes',
-      value: score.nrOfCloseOnes,
-      tweetDepth: score.tweetDepth,
-      perc: score.nrOfCloseOnes / score.tweetDepth,
-      color: 'limegreen',
+      name: 'closeOnes',
+      value: dummyData.score.nrOfCloseOnes,
+      fill: '#8D5B4C',
     },
-    {
-      name: 'CloseOnes',
-      value: score.nrOfMatches,
-      tweetDepth: score.tweetDepth,
-      perc: score.nrOfMatches / score.tweetDepth,
-      color: 'hotpink',
-    },
+    { name: 'hits', value: dummyData.score.nrOfHits, fill: '#5A2A27' },
   ]
-
-  return <article>Scorecard</article>
+  return (
+    <div className='p-2 mb-2 md:mb-0 border-2 border-pink-700'>
+      <h2 className='text-pink-700'>"{query}"</h2>
+      <div className='grid grid-cols-2'>
+        <h3>Score:</h3>
+        <RadialScoreValue score={dummyData.score} />
+      </div>
+      <div>
+        <ScoreBars barData={barData} />
+      </div>
+    </div>
+  )
 }
 
 export default ScoreCard
