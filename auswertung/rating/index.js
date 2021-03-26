@@ -115,3 +115,11 @@ function rateResults(results) {
 
 const score = rateResults(comparison)
 console.log(score)
+
+function returnScore() {
+  return {
+    originalTweeter: '@Original',
+    cloneTweeter: '@Clone',
+    score,
+  }
+}
