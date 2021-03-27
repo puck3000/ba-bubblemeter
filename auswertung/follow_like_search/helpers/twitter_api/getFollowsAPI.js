@@ -20,8 +20,8 @@ export default async function getFollows(userId) {
     followedUsers = addData(resultJSON.data, followedUsers)
     
     while(resultJSON.meta.next_token) {
-        fetchUrl = fetchUrl + "&pagination_token=" + resultJSON.meta.next_token.toString()
-        resultJSON = await (await fetch(fetchUrl, requestOptions)).json()
+        var newFetchUrl = fetchUrl + "&pagination_token=" + resultJSON.meta.next_token.toString()
+        resultJSON = await (await fetch(newFetchUrl, requestOptions)).json()
         followedUsers = addData(resultJSON.data, followedUsers)
     }
 
