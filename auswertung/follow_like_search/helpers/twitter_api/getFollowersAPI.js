@@ -21,7 +21,6 @@ export default async function getFollowers(userId) {
 
     while(resultJSON.meta.next_token) {
         var newFetchUrl = fetchUrl + "&pagination_token=" + resultJSON.meta.next_token.toString()
-        console.log(requestCount)
         resultJSON = await (await fetch(newFetchUrl, requestOptions)).json()
         followers = addData(resultJSON.data, followers)
     }
