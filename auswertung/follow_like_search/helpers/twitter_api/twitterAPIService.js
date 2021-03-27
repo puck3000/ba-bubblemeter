@@ -1,6 +1,7 @@
 import getUser from "./getUserAPI"
 import getLikes from './getLikesAPI'
 import getFollows from "./getFollowsAPI"
+import getFollowers from "./getFollowersAPI"
 
 //returns the userId of an accountname
 async function getUserId(username) {
@@ -62,4 +63,26 @@ async function getFollowedUsernames(userId) {
     return followedUsernames
 }
 
-export default {getUserId, getLikesId, getLikesIdWithName, getFollowedIds, getFollowedUsernames}
+async function getFollowerIds(userId) {
+    const followers = await getFollowers(userId)
+    var followerIds = []
+
+    followers.forEach(follower => {
+        followerIds.push(follower.id)
+    });
+
+    return followerIds
+}
+
+async function getFollowerUsernames(userId) {
+    const followers = await getFollowers(userId)
+    var followerUsernames = []
+
+    followers.forEach(follower => {
+        followerUsernames.push(follower.username)
+    })
+
+    return followerUsernames
+}
+
+export default {getUserId, getLikesId, getLikesIdWithName, getFollowedIds, getFollowedUsernames, getFollowerIds, getFollowerUsernames}
