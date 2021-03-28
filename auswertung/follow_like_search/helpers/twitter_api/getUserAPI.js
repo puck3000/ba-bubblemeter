@@ -1,3 +1,4 @@
+//300 requests in 15 minutes
 const fetch = require("node-fetch")
 require('dotenv').config()
 var bearerToken = process.env.bearerToken
