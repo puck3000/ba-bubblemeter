@@ -1,3 +1,4 @@
+//75 requests in 15 minutes
 const fetch = require("node-fetch")
 require('dotenv').config()
 var bearerToken = process.env.bearerToken
@@ -5,7 +6,6 @@ var bearerToken = process.env.bearerToken
 export default async function getLikes(userId) {
 
     var myHeaders = new fetch.Headers();
-    //myHeaders.append("Authorization", "OAuth oauth_consumer_key=\"" + consumerKey + "\",oauth_token=\"" + accessToken + "\",oauth_signature_method=\"HMAC-SHA1\",oauth_timestamp=\"1616402118\",oauth_nonce=\"JQdeV3zuFWz\",oauth_version=\"1.0\",oauth_signature=\"U%2FCVL4Uaf6H6lNSBLnwo3yX8pgI%3D\"");
     myHeaders.append("Authorization", "Bearer " + bearerToken);
 
     var requestOptions = {
