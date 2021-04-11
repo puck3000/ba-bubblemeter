@@ -25,18 +25,17 @@ async function getLikesId(userId) {
 //returns a list of postIds with name of the poster which were liked by the user
 async function getLikesIdWithName(userId) {
     const likesRes = await getLikes(userId)
-    var likesIdsWithNames = []
+    
+    var likesAndNames = []
 
     for (var i = 0; i < likesRes.length; i++){
-        var postId = likesRes[i].id.toString()
-        var username = likesRes[i].user.screen_name
-        var likeWithName = {}
-
-        likeWithName[username] = postId
-        likesIdsWithNames.push(likeWithName)
+        var postId = likesRes[i].id_str.toString()
+        var username = likesRes[i].user.screen_name.toString()
+        var likeWithName = {username: username, postId: postId}
+        likesAndNames.push(likeWithName)
     }
 
-    return likesIdsWithNames
+    return likesAndNames
 }
 
 //returns a list of followerIds which the user follows
