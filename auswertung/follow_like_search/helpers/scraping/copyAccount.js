@@ -12,15 +12,23 @@ export async function copyAccount(accountToCopy, page) {
     const followers = await twitterAPIService.getFollowedUsernames(accountToCopyId)
 
     //get list of liked tweets with username and postId
-    const likedTweets = await twitterAPIService.getLikesIdWithName(accountToCopyId)
-    
+    var likedTweets = await twitterAPIService.getLikesIdWithName(accountToCopyId)
+
+    var i = 0;
     for(const follower of followers) {
         await followAccFromOtherUser(follower, page)
-        await delay(30000)
+        i++
+        console.log(i + "/" + followers.length)
+        var randomValue = Math.floor(Math.random() * 10000)+2000
+        await delay(randomValue)
     }
 
-    for(const [twitterer, tweetID] of Object.entries(likedTweets)) {
-        await likeTweetFromOtherUser(twitterer, tweetID, page)
-        await delay(10000)
-    }  
+    var j = 0
+    for(j = 0; j < likedTweets.length; j++){
+        console.log(likedTweets[j].username +" "+likedTweets[j].postId)
+        await likeTweetFromOtherUser(likedTweets[j].username.toString(), likedTweets[j].postId.toString(), page)
+        j++
+        console.log(j + "/" + likedTweets.length)
+    }
+    
 }
