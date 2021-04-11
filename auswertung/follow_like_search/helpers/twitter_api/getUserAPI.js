@@ -15,6 +15,6 @@ export default async function getUser(username) {
     };
     
     var fetchUrl = "https://api.twitter.com/2/users/by/username/" + username.toString()
-    var result = (await fetch(fetchUrl, requestOptions)).json()
+    var result = await (await fetch(fetchUrl, requestOptions)).json()
     return result
 }
